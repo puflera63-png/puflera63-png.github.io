@@ -273,3 +273,11 @@ html{scrollbar-width:thin;scrollbar-color:var(--navy) transparent}
 .btn-task.picked{background:var(--navy);color:#fff}
 .btn-task.ok{background:#e6f2e8;border-color:#2e7d32;color:#2e7d32;pointer-events:none}
 .btn-task.bad{background:#fdecea;border-color:#c62828;color:#c62828}
+
+/* явное разделение колонок в «Соедини» */
+.match-col{background:var(--paper2);border:1px solid rgba(43,58,103,.15);border-radius:10px;padding:12px}
+.match-col-title{margin:0 0 8px;font-weight:700;color:var(--navy);font-size:.95rem;letter-spacing:.02em;text-transform:uppercase}
+@media (max-width:640px){
+  .match-wrap{grid-template-columns:1fr}
+  .match-item{padding:9px 12px}
+}
