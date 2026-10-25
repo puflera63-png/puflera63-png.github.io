@@ -218,3 +218,28 @@ figure.pic figcaption{max-width:560px;text-align:center;font-size:.92rem;color:#
 .final-note{margin-top:1.4em;font-style:italic;color:#4a4a40}
 @media (max-width:700px){.propp-grid,.role-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:480px){.propp-grid,.role-grid{grid-template-columns:1fr}}
+
+/* Мастерская сказочника: нарядные карточки заданий */
+.work-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;box-shadow:var(--shadow);margin:10px 0 22px;position:relative;overflow:hidden}
+.work-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--navy),var(--ochre2),var(--navy))}
+.work-card textarea{width:100%;margin:6px 0}
+.cubes{display:flex;gap:14px;flex-wrap:wrap;margin:10px 0}
+.cube{flex:1;min-width:120px;background:var(--paper2);border:2px dashed var(--navy);border-radius:10px;padding:18px 12px;text-align:center;font-family:sans-serif;font-size:1rem;cursor:pointer;transition:transform .15s}
+.cube:hover{transform:translateY(-3px) rotate(-2deg)}
+.quiz-pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin:12px 0}
+.qpic{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:var(--shadow)}
+.qpic img{width:100%;height:150px;object-fit:cover;display:block}
+.qpic .qbtns{display:flex;flex-direction:column;padding:10px;gap:6px}
+.qbtns button{font-size:.85rem;padding:6px 10px;border-radius:6px;border:1px solid var(--line);background:var(--paper2);cursor:pointer;text-align:left}
+.qbtns button.ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+.qbtns button.bad{background:var(--bad);color:#fff;border-color:var(--bad)}
+.order-row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.order-chip{padding:8px 12px;border-radius:20px;border:1px solid var(--navy);background:var(--paper2);cursor:pointer;font-size:.9rem;user-select:none}
+.order-chip.placed{opacity:.45;text-decoration:line-through}
+.order-slot{min-height:20px}
+.order-check{margin-top:8px}
+.role-q{margin:12px 0;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--paper2)}
+.role-q p{margin:0 0 8px;font-weight:600}
+.role-q label{display:block;margin:4px 0;cursor:pointer}
+.role-res{margin-top:14px;padding:14px;border-radius:8px;background:var(--navy);color:#fff;font-size:1.05rem}
+.role-res small{display:block;margin-top:6px;opacity:.85}
