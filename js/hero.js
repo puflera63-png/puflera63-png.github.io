@@ -15,17 +15,20 @@ window.GSProgress=(function(){
 })();
 function renderPath(){
   var paths=document.querySelectorAll(".hero-path");
-  var done=window.GSProgress?GSProgress:window.GSProgress;
+  var names={quiz:"Викторина",excerpt:"Найди функцию",odd:"Найди лишнее",match:"Соедини пары",constructor:"Конструктор сказки",cubes:"Кубики сказителя",reverse:"Сказка наоборот",letter:"Письмо из похода",book:"Моя книга сказок"};
+  var tasks=window.GSProgress?GSProgress.list():[];
   paths.forEach(function(p){
     p.innerHTML="";
-    var tasks=window.GSProgress?GSProgress.list():[];
-    tasks.forEach(function(t){
+    tasks.forEach(function(t,i){
       var s=document.createElement("span");
       s.className="step"+((window.GSProgress&&GSProgress.isDone(t))?" done":"");
-      var names={quiz:"Т",excerpt:"О",odd:"Л",match:"М",constructor:"К",cubes:"Кб",reverse:"Н",letter:"П",book:"Кн"};
-      s.textContent=names[t]||"?";s.title=t;
+      s.textContent=i+1;s.title=names[t]||t;
       p.appendChild(s);
     });
+    if(p.nextElementSibling&&p.nextElementSibling.classList.contains("path-note"))p.nextElementSibling.remove();
+    var n=document.createElement("div");n.className="path-note";
+    n.textContent="Путь героя: выполнено "+(window.GSProgress?GSProgress.doneCount():0)+" из "+tasks.length+". Наведи на кружок – увидишь задание.";
+    p.after(n);
   });
 }
 document.addEventListener("DOMContentLoaded",renderPath);
