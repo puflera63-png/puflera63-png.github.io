@@ -172,7 +172,8 @@ body.a11y .lead,body.a11y p{color:#000}
 .hero-art{display:flex;justify-content:center}
 .book{perspective:600px}
 .book-cover{width:210px;min-height:150px;background:linear-gradient(160deg,var(--paper2),#e6d5b0);border:2px solid var(--ochre);border-radius:4px 10px 10px 4px;box-shadow:var(--shadow),inset 6px 0 0 rgba(168,114,31,.25);padding:18px 18px 16px 26px;display:flex;flex-wrap:wrap;align-items:baseline;column-gap:6px;transform:rotate(-1.5deg)}
-.drop-cap{font-family:'Palatino Linotype',Palatino,Georgia,serif;font-size:3.2rem;line-height:.9;color:var(--red);font-weight:bold}
+.book-cover .book-title{margin:0;font-style:italic;color:var(--red);text-align:left}
+.book-cover .book-title::first-letter{float:left;font-size:2.5em;line-height:.85;padding:2px 6px 0 0;font-style:normal;font-family:'Palatino Linotype',serif}
 .book-cover p{margin:0;font-style:italic;color:#6b5c3f;font-size:.95rem;max-width:120px}
 /* Карточки «Три дороги» */
 .cards .card{display:block;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px 20px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow);transition:transform .15s ease}
@@ -186,6 +187,7 @@ body.a11y .lead,body.a11y p{color:#000}
 /* Слабовидящим: новые блоки */
 body.a11y .hero-facts b{color:#000}
 body.a11y .book-cover{background:#fff;border-color:#000;box-shadow:none}
-body.a11y .drop-cap{color:#000}
+body.a11y .book-cover .book-title{margin:0;font-style:italic;color:var(--red);text-align:left}
+.book-cover .book-title::first-letter{float:left;font-size:2.5em;line-height:.85;padding:2px 6px 0 0;font-style:normal;font-family:'Palatino Linotype',serif}
 body.a11y .card-link,body.a11y .overline,body.a11y .accent{color:#000}
 body.a11y .cards .card,body.a11y .btn.primary{background:#fff;border:2px solid #000;color:#000}
