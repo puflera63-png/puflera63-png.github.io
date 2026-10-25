@@ -27,14 +27,34 @@ function renderQuiz(){
       if(sel&&+sel.value===q[4])score++;
     });
     if(!answered){fb.innerHTML="<p class='warn'>Ответь на все вопросы, чтобы увидеть результат.</p>";return;}
-    var msg=score===GS.QUIZ.length?"Блестяще! Ты готов сочинять собственную сказку.":score>=6?"Хорошо! Перечитай карточки функций и попробуй ещё раз.":"Пока трудновато - вернись к разделу теории, там все ответы.";
+    var msg=score===GS.QUIZ.length?"Блестяще! Ты готов сочинять собственную сказку.":score>=6?"Хорошо! Перечитай карточки функций и попробуй ещё раз.":"Пока трудновато – вернись к разделу теории, там все ответы.";
     fb.innerHTML="<p>Результат: <b>"+score+" из "+GS.QUIZ.length+"</b>. "+msg+"</p>";
     if(score>=6&&window.GSProgress)GSProgress.mark("quiz");
   });
   box.appendChild(form);box.appendChild(check);box.appendChild(fb);
 }
-window.GSRender={quiz:renderQuiz};
-})();
+function renderPropp(){
+  var box=document.getElementById("proppCards");if(!box)return;
+  var wrap=el("div","propp-grid");
+  GS.PROPP.forEach(function(f){
+    var m=String(f[0]).match(/^([0-9]+)\.\s*(.*)$/);
+    var num=m?m[1]:"0", name=m?m[2]:f[0];
+    var c=el("div","pcard");
+    c.innerHTML="<div class='phead'><span class='pnum'>"+num+"</span><b>"+esc(name)+"</b></div><p>"+esc(f[1])+"</p><p class='ex'>"+esc(f[2])+"</p>";
+    wrap.appendChild(c);
+  });
+  box.appendChild(wrap);
+}
+function renderRoles(){
+  var box=document.getElementById("roleCards");if(!box)return;
+  var wrap=el("div","role-grid");
+  GS.ROLES.forEach(function(r){
+    var c=el("div","role-card");
+    c.innerHTML="<b>"+esc(r[0])+"</b><p>"+esc(r[1])+"</p><p class='ex'>"+esc(r[2])+"</p>";
+    wrap.appendChild(c);
+  });
+  box.appendChild(wrap);
+}
 function renderExcerpts(){
   var box=document.getElementById("excerptBox");if(!box)return;
   GS.EXCERPTS.forEach(function(x){
@@ -53,8 +73,6 @@ function renderExcerpts(){
     box.appendChild(t);
   });
 }
-window.GSRender.excerpts=renderExcerpts;
-
 function renderOdd(){
   var box=document.getElementById("oddBox");if(!box)return;
   GS.ODD.forEach(function(r){
@@ -77,9 +95,9 @@ function renderMatch(){
   var pairs=GS.MATCH.slice();
   var answers=pairs.map(function(p){return p[1];}).sort(function(){return Math.random()-0.5;});
   var form=el("div");
-  pairs.forEach(function(p,i){
+  pairs.forEach(function(p){
     var row=el("div","task");
-    row.innerHTML="<p><b>"+esc(p[0])+"</b> - это...</p>";
+    row.innerHTML="<p><b>"+esc(p[0])+"</b> – это...</p>";
     var sel=el("select");
     answers.forEach(function(a){var op=el("option");op.textContent=a;sel.appendChild(op);});
     row.appendChild(sel);form.appendChild(row);
@@ -97,9 +115,7 @@ function renderMatch(){
   });
   form.appendChild(b);form.appendChild(fb);box.appendChild(form);
 }
-window.GSRender.match=renderMatch;
-window.GSRender.odd=renderOdd;
 document.addEventListener("DOMContentLoaded",function(){
-  var R=window.GSRender;
-  R.propp();R.roles();R.quiz();R.excerpts();R.odd();R.match();
+  renderPropp();renderRoles();renderQuiz();renderExcerpts();renderOdd();renderMatch();
 });
+})();
