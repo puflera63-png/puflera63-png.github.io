@@ -100,7 +100,9 @@ function renderMatch(){
   var box=document.getElementById("matchBox");if(!box)return;
   var pairs=GS.MATCH.slice();
   var left=el("div","match-col");
+  left.appendChild(el("p","match-col-title","Функция"));
   var right=el("div","match-col");
+  right.appendChild(el("p","match-col-title","Пример из сказки"));
   var rights=pairs.map(function(p,i){return i;});
   for(var a=rights.length-1;a>0;a--){var b=Math.floor(Math.random()*(a+1));var t2=rights[a];rights[a]=rights[b];rights[b]=t2;}
   var picked=null,done=0,note=el("p","odd-note","");
