@@ -57,25 +57,38 @@ function renderExcerpts(){
   var box=document.getElementById("excerptBox");if(!box)return;
   GS.EXCERPTS.forEach(function(x){
     var c=el("div","quiz-q");
-    c.innerHTML="<p class='ex'>"+esc(x[0])+"</p><p><b>"+esc(x[1])+"</b></p>";
+    c.innerHTML="<p class='ex'>"+esc(x[0])+"</p><p class='odd-q'>Какая это функция?</p>";
+    var opts=x[2].slice();
+    for(var a=opts.length-1;a>0;a--){var b=Math.floor(Math.random()*(a+1));var t2=opts[a];opts[a]=opts[b];opts[b]=t2;}
+    opts.forEach(function(o){
+      var b=el("button","btn-ghost small",esc(o));
+      b.addEventListener("click",function(){
+        if(c.querySelector(".quiz-opt.ok"))return;
+        c.querySelectorAll(".odd-note").forEach(function(n){n.remove();});
+        c.querySelectorAll("button").forEach(function(x2){x2.classList.remove("ok","bad");});
+        if(o===x[1]){b.classList.add("ok");c.appendChild(el("p","odd-note ok","Верно! Это "+o+"."));}
+        else{b.classList.add("bad");c.appendChild(el("p","odd-note bad","Нет, "+o+" здесь ни при чём. Попробуй другой вариант."));}
+      });
+      c.appendChild(b);
+    });
     box.appendChild(c);
   });
 }
 
 function renderOdd(){
   var box=document.getElementById("oddBox");if(!box)return;
-  GS.ODD.forEach(function(o,oi){
+  GS.ODD.forEach(function(o){
     var c=el("div","quiz-q");
-    var p=el("p",null,"Найди то, что не функция сказки:");
-    c.appendChild(p);
-    o.forEach(function(w){
-      if(w===o[4])return;
+    c.appendChild(el("p",null,"Найди то, что НЕ функция волшебной сказки:"));
+    var words=o.slice(0,4);
+    for(var a=words.length-1;a>0;a--){var b=Math.floor(Math.random()*(a+1));var t2=words[a];words[a]=words[b];words[b]=t2;}
+    words.forEach(function(w){
       var b=el("button","btn-ghost small",esc(w));
       b.addEventListener("click",function(){
-        c.querySelectorAll("button").forEach(function(x){x.classList.remove("ok","bad");});
-        b.classList.add(w===o[0]?"bad":"ok");
-        var old=c.querySelector(".odd-note");if(old)old.remove();
-        c.appendChild(el("p","odd-note "+(w===o[0]?"bad":"ok"),w===o[0]?"Верно подмечено: это не функция.":w===o[1]?"Почти! Но "+w+" – настоящая функция сказки.":""));
+        c.querySelectorAll(".odd-note").forEach(function(n){n.remove();});
+        c.querySelectorAll("button").forEach(function(x2){x2.classList.remove("ok","bad");});
+        if(w===o[4]){b.classList.add("ok");c.appendChild(el("p","odd-note ok","Верно! "+w+" – не функция сказки."));}
+        else{b.classList.add("bad");c.appendChild(el("p","odd-note bad","Нет: "+w+" – настоящая функция. Ищи то, чего в сказках не бывает."));}
       });
       c.appendChild(b);
     });
@@ -85,35 +98,63 @@ function renderOdd(){
 
 function renderMatch(){
   var box=document.getElementById("matchBox");if(!box)return;
-  GS.MATCH.forEach(function(m,mi){
-    var c=el("div","quiz-q");
-    c.innerHTML="<p><b>"+esc(m[0])+"</b> – <i>"+esc(m[1])+"</i></p>";
-    box.appendChild(c);
+  var pairs=GS.MATCH.slice();
+  var left=el("div","match-col");
+  var right=el("div","match-col");
+  var rights=pairs.map(function(p,i){return i;});
+  for(var a=rights.length-1;a>0;a--){var b=Math.floor(Math.random()*(a+1));var t2=rights[a];rights[a]=rights[b];rights[b]=t2;}
+  var picked=null,done=0,note=el("p","odd-note","");
+  var fb=el("div","feedback");
+  function isDone(){return done===pairs.length;}
+  pairs.forEach(function(p,pi){
+    var lb=el("button","btn-ghost small match-item",esc(p[0]));
+    lb.addEventListener("click",function(){
+      if(lb.classList.contains("ok"))return;
+      left.querySelectorAll("button").forEach(function(x){x.classList.remove("picked");});
+      lb.classList.add("picked");picked=pi;
+    });
+    left.appendChild(lb);
   });
+  rights.forEach(function(ri){
+    var p=pairs[ri];
+    var rb=el("button","btn-ghost small match-item",esc(p[1]));
+    rb.addEventListener("click",function(){
+      if(rb.classList.contains("ok")||picked===null)return;
+      var lb=left.querySelectorAll("button")[picked];
+      if(pairs[picked][1]===p[1]&&p[0]===pairs[picked][0]){
+        lb.classList.remove("picked");lb.classList.add("ok");rb.classList.add("ok");
+        picked=null;done++;
+        note.className="odd-note ok";note.textContent="Пара найдена! Осталось: "+(pairs.length-done)+".";
+        if(isDone()){note.textContent="Все пары найдены! Ты настоящий сказовед!";}
+      }else{
+        rb.classList.add("bad");
+        note.className="odd-note bad";note.textContent="Не та пара: попробуй ещё.";
+        setTimeout(function(){rb.classList.remove("bad");},700);
+      }
+    });
+    right.appendChild(rb);
+  });
+  box.appendChild(left);box.appendChild(right);box.appendChild(note);box.appendChild(fb);
 }
 
 function renderPropp(){
   var box=document.getElementById("proppCards");if(!box)return;
-  var wrap=el("div","propp-grid");
   GS.PROPP.forEach(function(f){
-    var mm=String(f[0]).match(/^([0-9]+)\.\s*(.*)$/);
-    var num=mm?mm[1]:"–", name=mm?mm[2]:f[0];
     var c=el("div","pcard");
+    var m=String(f[0]).match(/^([0-9]+)\.\s*(.*)$/);
+    var num=m?m[1]:"+",name=m?m[2]:f[0];
     c.innerHTML="<div class='phead'><span class='pnum'>"+num+"</span><b>"+esc(name)+"</b></div><p>"+esc(f[1])+"</p><p class='ex'>"+esc(f[2])+"</p>";
-    wrap.appendChild(c);
+    box.appendChild(c);
   });
-  box.appendChild(wrap);
 }
 
 function renderRoles(){
   var box=document.getElementById("roleCards");if(!box)return;
-  var wrap=el("div","role-grid");
   GS.ROLES.forEach(function(r){
     var c=el("div","role-card");
     c.innerHTML="<b>"+esc(r[0])+"</b><p>"+esc(r[1])+"</p><p class='ex'>"+esc(r[2])+"</p>";
-    wrap.appendChild(c);
+    box.appendChild(c);
   });
-  box.appendChild(wrap);
 }
 
 window.GSRender={quiz:renderQuiz,excerpts:renderExcerpts,odd:renderOdd,match:renderMatch,propp:renderPropp,roles:renderRoles};
