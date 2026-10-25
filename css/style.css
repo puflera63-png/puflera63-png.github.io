@@ -191,3 +191,30 @@ body.a11y .book-cover .book-title{margin:0;font-style:italic;color:var(--red);te
 .book-cover .book-title::first-letter{float:left;font-size:2.5em;line-height:.85;padding:2px 6px 0 0;font-style:normal;font-family:'Palatino Linotype',serif}
 body.a11y .card-link,body.a11y .overline,body.a11y .accent{color:#000}
 body.a11y .cards .card,body.a11y .btn.primary{background:#fff;border:2px solid #000;color:#000}
+
+/* Раздел «Для ученика»: карточки функций, роли, картинки, читалка */
+.propp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin:16px 0}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px;box-shadow:var(--shadow)}
+.pcard .phead{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.pcard .pnum{min-width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:.8rem}
+.pcard p{margin:.3em 0;font-size:.95rem}
+.pcard .ex,.role-card .ex{color:var(--ochre2);font-style:italic;font-size:.88rem;margin:.35em 0 0}
+.role-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin:16px 0}
+.role-card{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--red);border-radius:8px;padding:12px 14px;box-shadow:var(--shadow)}
+.role-card b{color:var(--navy)}
+.role-card p{margin:.3em 0;font-size:.95rem}
+figure.pic{margin:20px 0;display:flex;flex-direction:column;align-items:center}
+figure.pic img{max-width:min(520px,100%);height:auto;border-radius:10px;box-shadow:var(--shadow);border:6px solid var(--card)}
+figure.pic figcaption{max-width:560px;text-align:center;font-size:.92rem;color:#55534a;margin-top:8px}
+.dict{margin:14px 0}
+.dict dt{font-weight:700;color:var(--navy);margin-top:.6em}
+.dict dd{margin:.15em 0 0 1.4em}
+.speech-wrap{display:flex;align-items:center;gap:12px;margin:14px 0;flex-wrap:wrap}
+.speech-btn{background:var(--navy);color:#fff;border:none;border-radius:20px;padding:9px 20px;font:inherit;cursor:pointer}
+.speech-btn:hover{background:var(--navy2)}
+.speech-hint{color:#7a7466;font-size:.9rem;font-style:italic}
+.reading{background:linear-gradient(transparent 30%,rgba(200,138,45,.28) 30% 90%,transparent 90%);border-radius:4px}
+.path-note{font-size:.9rem;color:#7a7466;font-style:italic;margin:4px 0 0}
+.final-note{margin-top:1.4em;font-style:italic;color:#4a4a40}
+@media (max-width:700px){.propp-grid,.role-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.propp-grid,.role-grid{grid-template-columns:1fr}}
