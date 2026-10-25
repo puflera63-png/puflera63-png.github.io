@@ -61,7 +61,7 @@ function renderExcerpts(){
     var opts=x[2].slice();
     for(var a=opts.length-1;a>0;a--){var b=Math.floor(Math.random()*(a+1));var t2=opts[a];opts[a]=opts[b];opts[b]=t2;}
     opts.forEach(function(o){
-      var b=el("button","btn-ghost small",esc(o));
+      var b=el("button","btn-task",esc(o));
       b.addEventListener("click",function(){
         if(c.querySelector(".quiz-opt.ok"))return;
         c.querySelectorAll(".odd-note").forEach(function(n){n.remove();});
@@ -83,7 +83,7 @@ function renderOdd(){
     var words=o.slice(0,4);
     for(var a=words.length-1;a>0;a--){var b=Math.floor(Math.random()*(a+1));var t2=words[a];words[a]=words[b];words[b]=t2;}
     words.forEach(function(w){
-      var b=el("button","btn-ghost small",esc(w));
+      var b=el("button","btn-task",esc(w));
       b.addEventListener("click",function(){
         c.querySelectorAll(".odd-note").forEach(function(n){n.remove();});
         c.querySelectorAll("button").forEach(function(x2){x2.classList.remove("ok","bad");});
@@ -107,7 +107,7 @@ function renderMatch(){
   var fb=el("div","feedback");
   function isDone(){return done===pairs.length;}
   pairs.forEach(function(p,pi){
-    var lb=el("button","btn-ghost small match-item",esc(p[0]));
+    var lb=el("button","btn-task match-item",esc(p[0]));
     lb.addEventListener("click",function(){
       if(lb.classList.contains("ok"))return;
       left.querySelectorAll("button").forEach(function(x){x.classList.remove("picked");});
@@ -117,7 +117,7 @@ function renderMatch(){
   });
   rights.forEach(function(ri){
     var p=pairs[ri];
-    var rb=el("button","btn-ghost small match-item",esc(p[1]));
+    var rb=el("button","btn-task match-item",esc(p[1]));
     rb.addEventListener("click",function(){
       if(rb.classList.contains("ok")||picked===null)return;
       var lb=left.querySelectorAll("button")[picked];
