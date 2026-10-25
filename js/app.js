@@ -13,6 +13,16 @@ document.addEventListener("click",function(e){
   if(panel){panel.hidden=false;panel.classList.add("active");}
 });
 
+/* Ссылка «Мастерская сказочника» в конце теории открывает вкладку практикума */
+document.addEventListener("click",function(e){
+  var link=e.target.closest("a[href=\"#practicumRoot\"]");if(!link)return;
+  e.preventDefault();
+  var tab=document.querySelector(".tab[data-tab=\"practicum\"]");
+  if(tab)tab.click();
+  var panel=document.getElementById("tab-practicum");
+  if(panel)panel.scrollIntoView({behavior:"smooth",block:"start"});
+});
+
 /* Версия для слабовидящих */
 var a11yBtn=document.getElementById("a11yToggle");
 if(a11yBtn){
