@@ -243,3 +243,12 @@ figure.pic figcaption{max-width:560px;text-align:center;font-size:.92rem;color:#
 .role-q label{display:block;margin:4px 0;cursor:pointer}
 .role-res{margin-top:14px;padding:14px;border-radius:8px;background:var(--navy);color:#fff;font-size:1.05rem}
 .role-res small{display:block;margin-top:6px;opacity:.85}
+
+/* полировка мастерской */
+.choices{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin:8px 0}
+.choice{text-align:left;line-height:1.35;padding:10px 12px}
+.path-chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px}
+html{scrollbar-width:thin;scrollbar-color:var(--navy) transparent}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:var(--navy);border-radius:5px;border:2px solid var(--card)}
+::-webkit-scrollbar-track{background:transparent}
