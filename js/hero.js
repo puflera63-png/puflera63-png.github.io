@@ -1,7 +1,7 @@
 /* Путь героя: прогресс по заданиям (localStorage) */
 window.GSProgress=(function(){
   var KEY="gsu_tasks";
-  var TASKS=["quiz","excerpt","odd","match","constructor","cubes","reverse","letter","book"];
+  var TASKS=["quiz","excerpt","odd","match","constructor","cubes","pictures","path","role","reverse","letter","book"];
   function get(){try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(e){return{};}}
   function set(o){localStorage.setItem(KEY,JSON.stringify(o));}
   return{
