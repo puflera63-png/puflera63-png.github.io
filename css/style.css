@@ -266,3 +266,10 @@ html{scrollbar-width:thin;scrollbar-color:var(--navy) transparent}
 .odd-note{margin:.4em 0 0;font-size:.92rem}
 .odd-note.ok{color:#2e7d32}
 .odd-note.bad{color:#c62828}
+
+/* кнопки заданий на светлом фоне: заметные */
+.btn-task{background:#fff;border:1.5px solid var(--navy);color:var(--navy);padding:7px 14px;border-radius:6px;cursor:pointer;font:inherit;font-size:.92rem;transition:background .15s,color .15s,transform .1s}
+.btn-task:hover{background:var(--paper2);transform:translateY(-1px)}
+.btn-task.picked{background:var(--navy);color:#fff}
+.btn-task.ok{background:#e6f2e8;border-color:#2e7d32;color:#2e7d32;pointer-events:none}
+.btn-task.bad{background:#fdecea;border-color:#c62828;color:#c62828}
