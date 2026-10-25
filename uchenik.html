@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Для ученика — Грамматика сюжета</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">К основному содержанию</a>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="logo" href="index.html"><span class="logo-mark">Г</span><span class="logo-text">Грамматика<b> сюжета</b></span></a>
+    <nav class="main-nav" aria-label="Основная навигация">
+      <a href="index.html">Главная</a>
+      <a href="uchenik.html" class="active">Для ученика</a>
+      <a href="roditel.html">Для родителя</a>
+      <a href="uchitel.html">Для учителя</a>
+    </nav>
+    <button id="a11yToggle" class="btn-ghost small" type="button" aria-pressed="false">Версия для слабовидящих</button>
+  </div>
+</header>
+<main id="main" class="wrap">
+  <h1 class="page-title">Дорога сказочника</h1>
+  <p class="lead">Каждый настоящий сказочник сначала учится читать сказку, как карту: где беда, где даритель, где победа. Пройди дорогу от первой карточки до собственной книги.</p>
+  <div class="tabs" role="tablist">
+    <button class="tab active" data-tab="theory" role="tab" aria-selected="true">Часть I. Учимся читать сказку</button>
+    <button class="tab" data-tab="practicum" role="tab" aria-selected="false">Часть II. Мастерская сказочника</button>
+  </div>
+  <section id="tab-theory" class="tabpanel active" role="tabpanel">
+    <div class="hero-path" aria-label="Путь героя: выполненные задания"></div>
+    <div id="theoryRoot"></div>
+  </section>
+  <section id="tab-practicum" class="tabpanel" role="tabpanel" hidden>
+    <div class="hero-path" aria-label="Путь героя: выполненные задания"></div>
+    <div id="practicumRoot"></div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <div><p><b>Грамматика сюжета</b></p><p>Электронный образовательный ресурс для младших школьников</p></div>
+    <div><p>Разделы: <a href="roditel.html">Для родителя</a> · <a href="uchitel.html">Для учителя</a></p></div>
+    <div><p>ФГОС НОО · ФОП НОО · ФЗ «Об образовании в РФ» · ФЗ-152<br>Возрастная маркировка: 6+</p></div>
+  </div>
+</footer>
+<script src="js/app.js"></script>
+<script src="js/theory.js"></script>
+<script src="js/theory2.js"></script>
+<script src="js/logic.js"></script>
+<script src="js/practicum.js"></script>
+<script src="js/hero.js"></script>
+</body>
+</html>
