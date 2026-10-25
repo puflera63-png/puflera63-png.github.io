@@ -136,7 +136,7 @@ function renderMatch(){
     });
     right.appendChild(rb);
   });
-  box.appendChild(left);box.appendChild(right);box.appendChild(note);box.appendChild(fb);
+  var wrap=el("div","match-wrap");wrap.appendChild(left);wrap.appendChild(right);box.appendChild(wrap);box.appendChild(note);box.appendChild(fb);
 }
 
 function renderPropp(){
